@@ -36,7 +36,7 @@ public class HachageFrame extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         initComponents();
-        this.setTitle("Wallouf crypto");
+        this.setTitle("Wallouf crypto v1.01");
         this.setVisible(true);
         this.jSplitPane1.setDividerLocation(0.5);
         this.setLocationRelativeTo(null);
@@ -63,8 +63,8 @@ public class HachageFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemExit = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuTool = new javax.swing.JMenu();
+        jMenuItemReset = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,17 +140,17 @@ public class HachageFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Tools");
+        jMenuTool.setText("Tools");
 
-        jMenuItem1.setText("Erase all");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemReset.setText("Reset text area");
+        jMenuItemReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemResetActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenuTool.add(jMenuItemReset);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuTool);
 
         setJMenuBar(jMenuBar1);
 
@@ -181,20 +181,11 @@ public class HachageFrame extends javax.swing.JFrame {
                     } else {
                         crypt += (char) (c - 13);
                     }
-                    //minuscules
                 } else if ((int) c > 96 && (int) c < 123) {
-                    if (((int) (c / 13) % 2) != 0) {
-                        crypt += (char) (c + 13);
+                    if (((int) (c / 6) % 2) != 0) {
+                        crypt += (char) (c + 6);
                     } else {
-                        crypt += (char) (c - 13);
-                    }
-                } else if ((int) c > 191 && (int) c < 240) {
-                    System.out.println("R 192:"+((192/13)%2));
-                    System.out.println("R 239:"+((239/13)%2));
-                    if (((int) (c / 13) % 2) != 0) {
-                        crypt += (char) (c + 13);
-                    } else {
-                        crypt += (char) (c - 13);
+                        crypt += (char) (c - 6);
                     }
                 } else {
                     crypt += (char) (c);
@@ -203,7 +194,7 @@ public class HachageFrame extends javax.swing.JFrame {
             jTextAreaCrypt.setText(crypt);
         }
     }//GEN-LAST:event_jTextAreaUnCryptKeyReleased
-// 192 a 239
+
     private void jTextAreaCryptKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaCryptKeyReleased
         String uncrypt = jTextAreaCrypt.getText();
         String crypt = "";
@@ -217,16 +208,10 @@ public class HachageFrame extends javax.swing.JFrame {
                     } else {
                         crypt += (char) (c - 13);
                     }
-                } else if ((int) c > 109 && (int) c < 117 || (int) c > 129 && (int) c < 136) {
-                    crypt += (char) (c - 13);
-                } else if ((int) c > 90 && (int) c < 104) {
-                    crypt += (char) (c + 13);
-                } else if ((int) c > 204 && (int) c < 253) {
-                    if (((int) (c / 13) % 2) != 0) {
-                        crypt += (char) (c + 13);
-                    } else {
-                        crypt += (char) (c - 13);
-                    }
+                } else if ((int) c > 90 && (int) c < 96 || (int) c > 101 && (int) c < 108 || (int) c > 113 && (int) c < 117) {
+                    crypt += (char) (c + 6);
+                } else if ((int) c > 107 && (int) c < 114 || (int) c > 119 && (int) c < 126) {
+                    crypt += (char) (c - 6);
                 } else {
                     crypt += (char) (c);
                 }
@@ -239,18 +224,18 @@ public class HachageFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        jTextAreaUnCrypt.setText("");
+    private void jMenuItemResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetActionPerformed
         jTextAreaCrypt.setText("");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        jTextAreaUnCrypt.setText("");
+    }//GEN-LAST:event_jMenuItemResetActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemExit;
+    private javax.swing.JMenuItem jMenuItemReset;
+    private javax.swing.JMenu jMenuTool;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
